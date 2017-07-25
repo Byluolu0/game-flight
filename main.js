@@ -37,6 +37,7 @@ var __loadResourse = function(start) {
       loaded += 1
       if (total == loaded) {
         //loaded
+        log("loaded")
         start(images)
       }
     }
@@ -46,12 +47,13 @@ var __loadResourse = function(start) {
 var __mainLoop = function(images) {
   var resourseManager = new ResourseManager(images)
   var eventManager = new EventManager()
-  var scene = new Scene(canvas, ctx, resourseManager, eventManager)
+  var scene = new Scene(canvas, ctx, resourseManager, eventManager, fps)
   runLoop(scene)
 }
 
 // 函数入口
 var __main = function() {
+  log("__main")
   __loadResourse(__mainLoop)
 }
 
