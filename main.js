@@ -6,8 +6,15 @@ var ctx = canvas.getContext('2d')
 
 var fps = 30
 
+var scene = null
+var images = null
+
+var setScene = function(s) {
+  scene = s
+}
+
 // 主循环
-var runLoop = function(scene) {
+var runLoop = function() {
   scene.update()
   scene.draw()
 
@@ -20,15 +27,16 @@ var runLoop = function(scene) {
 // 资源加载
 var __loadResourse = function(start) {
   var path = {
-    flight: 'flight.png',
-    ball: 'ball.png',
+    flight: 'images/flight.png',
+    ball: 'images/ball.png',
+    enemy: 'images/enemy.png'
   }
 
   var arr = Object.keys(path)
   var total = arr.length
   var loaded = 0
 
-  var images = {}
+  images = {}
 
   for (var i in path) {
     images[i] = new Image()
@@ -38,17 +46,17 @@ var __loadResourse = function(start) {
       if (total == loaded) {
         //loaded
         log("loaded")
-        start(images)
+        start()
       }
     }
   }
 }
 
-var __mainLoop = function(images) {
-  var resourseManager = new ResourseManager(images)
+var __mainLoop = function() {
   var eventManager = new EventManager()
-  var scene = new Scene(canvas, ctx, resourseManager, eventManager, fps)
-  runLoop(scene)
+  var s = new SceneStart(canvas, ctx, eventManager)
+  setScene(s)
+  runLoop()
 }
 
 // 函数入口

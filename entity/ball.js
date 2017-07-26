@@ -14,11 +14,12 @@ class Ball {
     this.y -= this.speed
   }
 
-  collide() {
-    if (this.y + this.height < 0) {
-      return true
-    }
-    return false
+  outOfScene() {
+    return this.y + this.height < 0
+  }
+
+  die() {
+    this.scene.removeBall(this)
   }
 
   draw() {
@@ -26,8 +27,8 @@ class Ball {
   }
 
   update() {
-    if (this.collide()) {
-      this.flight.removeBall(this)
+    if (this.outOfScene()) {
+      this.die()
       return
     }
     this.move()

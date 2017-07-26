@@ -49,33 +49,22 @@ class Flight {
     var ball_x = this.x + this.width / 2
     var ball_y = this.y
     var ball = new Ball(this.scene, this, ball_image, ball_x, ball_y, 200)
-    this.balls.push(ball)
+    //this.balls.push(ball)
+    this.scene.addBall(ball)
     this.energy = 0
+  }
+
+  collide(enemy) {
+    return collide(enemy, this)
   }
 
   draw() {
     this.img.draw(this.x, this.y)
-    for (var i in this.balls) {
-      this.balls[i].draw()
-    }
   }
 
   update() {
     if (this.energy < this.fireEnergyNeed) {
       this.energy += 1
     }
-    for (var i in this.balls) {
-      if (this.balls[i].collide()) {
-        this.balls.splice(i, 1)
-        continue
-      }
-      log(this.balls)
-      this.balls[i].update()
-    }
-  }
-
-  removeBall(ball) {
-    var index = this.ball.indexOf(ball)
-    this.ball.slice(index, 1)
   }
 }

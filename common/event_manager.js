@@ -3,13 +3,19 @@ class EventManager {
     this.keydowns = {}
     this.keydownHandlers = {}
 
+    this.clickHandlers = {}
+
     this.__init()
   }
 
   __init() {
     var _this = this
     window.addEventListener('keydown', function(event){
-      _this.keydowns[event.key] = true
+      var key = event.key
+      _this.keydowns[key] = true
+      if (_this.clickHandlers[key]) {
+        _this.clickHandlers[key]()
+      }
     })
 
     window.addEventListener('keyup', function(event){
@@ -19,6 +25,10 @@ class EventManager {
 
   registerKeydownUpdateHandler(key, handler) {
     this.keydownHandlers[key] = handler
+  }
+
+  registerClickHandler(key, handler) {
+    this.clickHandlers[key] = handler
   }
 
   update() {
