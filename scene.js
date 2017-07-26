@@ -15,7 +15,7 @@ class Scene {
   __init() {
     var img = this.getImageByName('flight')
     var flight_image = new GameImage(this, img)
-    this.flight = new Flight(this, flight_image, 0, 0, 5)
+    this.flight = new Flight(this, flight_image, 0, 0, 5, 15)
 
     var _this = this
     this.eventManager.registerKeydownUpdateHandler('w', function() {
