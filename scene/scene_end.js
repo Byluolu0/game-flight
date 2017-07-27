@@ -1,5 +1,6 @@
-class SceneEnd {
+class SceneEnd extends BaseScene {
   constructor(canvas, ctx, eventManager) {
+    super(canvas, ctx)
     this.canvas = canvas
     this.ctx = ctx
     this.eventManager = eventManager
@@ -18,7 +19,7 @@ class SceneEnd {
   }
 
   draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    super.draw()
     this.ctx.fillText('Press r to restart.', 10, 50)
   }
 

@@ -1,13 +1,4 @@
 
-var config = {
-  fps: 30,
-  flight_speed: 10,
-  fire_enegy_need: 10,
-  ball_speed: 10,
-  enemy_speed: 10,
-  debug_mode: true,
-}
-
 var log = console.log.bind(console)
 if (!config.debug_mode) {
   log = function() {}
@@ -36,12 +27,7 @@ var runLoop = function() {
 
 // 资源加载
 var __loadResourse = function(start) {
-  var path = {
-    flight: 'images/flight.png',
-    ball: 'images/ball.png',
-    enemy: 'images/enemy.png'
-  }
-
+  var path = config.image_path
   var arr = Object.keys(path)
   var total = arr.length
   var loaded = 0

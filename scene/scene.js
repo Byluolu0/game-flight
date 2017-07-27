@@ -6,6 +6,8 @@ class Scene extends BaseScene {
     this.resourseManager = resourseManager
     this.eventManager = eventManager
     this.flight = null
+    this.bg = null
+    this.cloud = null
     this.width = canvas.width
     this.height = canvas.height
     this.enemys = []
@@ -15,8 +17,22 @@ class Scene extends BaseScene {
   }
 
   __init() {
-    var img = this.getImageByName('flight')
-    var flight = new Flight(this, img)
+    var bgImg = this.getImageByName('bg')
+    var bg = new Flight(this, bgImg)
+    bg.setPosition(0, 0)
+    this.addToDrawList(bg)
+    this.bg = bg
+
+    var cloudImg = this.getImageByName('cloud')
+    var cloud = new Cloud(this, cloudImg)
+    var cloudX = randomIn(this.width - cloudImg.width)
+    cloud.setPosition(cloudX, 0 - cloudImg.height)
+    log(cloud.x, cloud.y)
+    this.addToDrawList(cloud)
+    this.cloud = cloud
+
+    var flightImg = this.getImageByName('flight')
+    var flight = new Flight(this, flightImg)
     flight.setPosition(100, 600)
     this.addToDrawList(flight)
     this.flight = flight
@@ -43,6 +59,7 @@ class Scene extends BaseScene {
 
   update() {
     this.eventManager.update()
+    this.cloud.update()
     this.flight.update()
     for (var i in this.enemys) {
       this.enemys[i].update()
