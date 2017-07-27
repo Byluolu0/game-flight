@@ -16,9 +16,6 @@ function pointInRectangle(x, y, rectangle) {
   return false
 }
 
-
-function createEnemyInRandomPos(scene, image) {
-  var x = Math.floor(Math.random() * scene.width)
-  var enemy = new Enemy(scene, image, x, 0 - image.height, 100)
-  return enemy
+function randomIn(x) {
+  return Math.floor(Math.random() * x)
 }

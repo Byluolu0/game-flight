@@ -1,27 +1,37 @@
 
+var config = {
+  fps: 30,
+  flight_speed: 10,
+  fire_enegy_need: 10,
+  ball_speed: 10,
+  enemy_speed: 10,
+  debug_mode: true,
+}
+
 var log = console.log.bind(console)
+if (!config.debug_mode) {
+  log = function() {}
+}
 
 var canvas = document.getElementById('id-canvas')
 var ctx = canvas.getContext('2d')
 
-var fps = 30
-
-var scene = null
-var images = null
+var curScene = null
+const resourseImages = {}
 
 var setScene = function(s) {
-  scene = s
+  curScene = s
 }
 
 // 主循环
 var runLoop = function() {
-  scene.update()
-  scene.draw()
+  curScene.update()
+  curScene.draw()
 
   setTimeout(function() {
-    runLoop(scene)
+    runLoop()
     log('one loop')
-  }, 1000 / fps)
+  }, 1000 / config.fps)
 }
 
 // 资源加载
@@ -36,12 +46,10 @@ var __loadResourse = function(start) {
   var total = arr.length
   var loaded = 0
 
-  images = {}
-
   for (var i in path) {
-    images[i] = new Image()
-    images[i].src = path[i]
-    images[i].onload = function() {
+    resourseImages[i] = new Image()
+    resourseImages[i].src = path[i]
+    resourseImages[i].onload = function() {
       loaded += 1
       if (total == loaded) {
         //loaded

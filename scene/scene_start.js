@@ -11,9 +11,9 @@ class SceneStart {
 
   __init() {
     this.eventManager.registerClickHandler('k', function() {
-      var resourseManager = new ResourseManager(images)
+      var resourseManager = new ResourseManager(resourseImages)
       var eventManager = new EventManager()
-      var s = new Scene(canvas, ctx, resourseManager, eventManager, fps)
+      var s = new Scene(canvas, ctx, resourseManager, eventManager)
       setScene(s)
     })
   }

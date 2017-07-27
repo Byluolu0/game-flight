@@ -1,15 +1,18 @@
-class Flight {
-  constructor(scene, image, x, y, speed, fireEnergyNeed) {
+class Flight extends GameImage {
+  constructor(scene, rawImage) {
+    super(scene, rawImage)
     this.scene = scene
-    this.img = image
-    this.width = image.width
-    this.height = image.height
-    this.x = x
-    this.y = y
-    this.speed = speed
-    this.fireEnergyNeed = fireEnergyNeed
-    this.balls = []
+    this.speed = config.flight_speed
+    this.fireEnergyNeed = config.fire_enegy_need
     this.energy = 0
+  }
+
+  setSpeed(speed) {
+    this.speed = speed
+  }
+
+  setFireEnergyNeed(fireEnergyNeed) {
+    this.fireEnergyNeed = fireEnergyNeed
   }
 
   moveUp() {
@@ -45,21 +48,16 @@ class Flight {
       return
     }
     var image = this.scene.getImageByName('ball')
-    var ball_image = new GameImage(this.scene, image)
     var ball_x = this.x + this.width / 2
     var ball_y = this.y
-    var ball = new Ball(this.scene, this, ball_image, ball_x, ball_y, 200)
-    //this.balls.push(ball)
+    var ball = new Ball(this.scene, this, image)
+    ball.setPosition(ball_x, ball_y)
     this.scene.addBall(ball)
     this.energy = 0
   }
 
   collide(enemy) {
     return collide(enemy, this)
-  }
-
-  draw() {
-    this.img.draw(this.x, this.y)
   }
 
   update() {

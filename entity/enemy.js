@@ -1,20 +1,16 @@
-class Enemy {
-  constructor(scene, image, x, y, speed) {
+class Enemy extends GameImage {
+  constructor(scene, image) {
+    super(scene, image)
     this.scene = scene
-    this.img = image
-    this.x = x
-    this.y = y
-    this.width = image.width
-    this.height = image.height
-    this.speed = speed / scene.fps
+    this.speed = config.enemy_speed
+  }
+
+  setSpeed(speed) {
+    this.speed = speed
   }
 
   move() {
     this.y += this.speed
-  }
-
-  draw() {
-    this.img.draw(this.x, this.y)
   }
 
   die() {

@@ -1,13 +1,12 @@
-class Ball {
-  constructor(scene, flight, image, x, y, speed) {
-    this.scene = scene
+class Ball extends GameImage {
+  constructor(scene, flight, rawImage) {
+    super(scene, rawImage)
     this.flight = flight
-    this.img = image
-    this.x = x
-    this.y = y
-    this.width = image.width
-    this.height = image.height
-    this.speed = speed / scene.fps
+    this.speed = config.ball_speed
+  }
+
+  setSpeed(speed) {
+    this.speed = speed
   }
 
   move() {
@@ -20,10 +19,6 @@ class Ball {
 
   die() {
     this.scene.removeBall(this)
-  }
-
-  draw() {
-    this.img.draw(this.x, this.y)
   }
 
   update() {

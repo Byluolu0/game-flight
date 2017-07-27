@@ -1,5 +1,6 @@
-class Scene {
-  constructor(canvas, ctx, resourseManager, eventManager, fps) {
+class Scene extends BaseScene {
+  constructor(canvas, ctx, resourseManager, eventManager) {
+    super(canvas, ctx)
     this.canvas = canvas
     this.ctx = ctx
     this.resourseManager = resourseManager
@@ -7,7 +8,6 @@ class Scene {
     this.flight = null
     this.width = canvas.width
     this.height = canvas.height
-    this.fps = fps
     this.enemys = []
     this.balls = []
 
@@ -16,8 +16,10 @@ class Scene {
 
   __init() {
     var img = this.getImageByName('flight')
-    var flight_image = new GameImage(this, img)
-    this.flight = new Flight(this, flight_image, 100, 600, 5, 15)
+    var flight = new Flight(this, img)
+    flight.setPosition(100, 600)
+    this.addToDrawList(flight)
+    this.flight = flight
 
     var _this = this
     this.eventManager.registerKeydownUpdateHandler('w', function() {
@@ -39,17 +41,6 @@ class Scene {
     this.createEnemyInTime()
   }
 
-  draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-    this.flight.draw()
-    for (var i in this.enemys) {
-      this.enemys[i].draw()
-    }
-    for (var i in this.balls) {
-      this.balls[i].draw()
-    }
-  }
-
   update() {
     this.eventManager.update()
     this.flight.update()
@@ -69,9 +60,7 @@ class Scene {
       var enemy = this.enemys[i]
       if (this.flight.collide(enemy)) {
         // Gameover
-        var eventManager = new EventManager()
-        var s = new SceneEnd(this.canvas, this.ctx, eventManager)
-        setScene(s)
+        this.gameover()
         return
       }
     }
@@ -93,14 +82,17 @@ class Scene {
   }
 
   removeEnemy(enemy) {
+    this.removeFromDrawList(enemy)
     var index = this.enemys.indexOf(enemy)
     this.enemys.splice(index, 1)
   }
 
   createEnemy() {
-    var img = this.getImageByName('enemy')
-    var enemy_image = new GameImage(this, img)
-    var enemy = createEnemyInRandomPos(this, enemy_image)
+    var image = this.getImageByName('enemy')
+    var enemy = new Enemy(this, image)
+    var x = randomIn(this.width)
+    enemy.setPosition(x, 0 - image.height)
+    this.addToDrawList(enemy)
     this.enemys.push(enemy)
   }
 
@@ -113,11 +105,19 @@ class Scene {
   }
 
   addBall(ball) {
+    this.addToDrawList(ball)
     this.balls.push(ball)
   }
 
   removeBall(ball) {
+    this.removeFromDrawList(ball)
     var index = this.balls.indexOf(ball)
     this.balls.splice(index, 1)
+  }
+
+  gameover() {
+    var eventManager = new EventManager()
+    var s = new SceneEnd(this.canvas, this.ctx, eventManager)
+    setScene(s)
   }
 }
