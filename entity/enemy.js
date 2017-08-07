@@ -4,6 +4,7 @@ class Enemy extends SliceImage {
     this.scene = scene
     this.speed = cfg.speed
     this.drop_speed = cfg.drop_speed
+    this.hp = cfg.hp
     this.setAnimations(cfg.animations)
   }
 
@@ -20,6 +21,10 @@ class Enemy extends SliceImage {
   }
 
   boom() {
+    this.hp--
+    if (this.hp > 0) {
+      return
+    }
     this.setDead()
     this.speed = this.drop_speed
     this.runAnimation("die")

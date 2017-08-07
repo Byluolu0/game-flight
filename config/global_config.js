@@ -34,6 +34,7 @@ const globalConfig = {
     {
       speed: 10,
       drop_speed: 3,
+      hp: 3,
       base_image: 'gameArts',
       sx: 222,
       sy: 854,
@@ -71,6 +72,7 @@ const globalConfig = {
     {
       speed: 10,
       drop_speed: 3,
+      hp: 1,
       base_image: 'gameArts',
       sx: 83,
       sy: 656,
@@ -90,6 +92,7 @@ const globalConfig = {
     {
       speed: 10,
       drop_speed: 3,
+      hp: 2,
       base_image: 'gameArts',
       sx: 0,
       sy: 567,
