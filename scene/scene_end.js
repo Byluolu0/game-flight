@@ -28,8 +28,4 @@ class SceneEnd extends BaseScene {
   update() {
 
   }
-
-  getSliceByName(name) {
-    return this.resourseManager.getSliceByName(name)
-  }
 }

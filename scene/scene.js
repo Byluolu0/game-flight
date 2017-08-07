@@ -16,13 +16,13 @@ class Scene extends BaseScene {
   }
 
   __init() {
-    var bgInfo = this.getSliceByName('bg')
+    var bgInfo = this.resourseManager.getSliceByName('bg')
     var bg = new StartBg(this, bgInfo)
     bg.setPosition(0, 0)
     this.addToDrawList(bg)
     this.bg = bg
 
-    var flightInfo = this.getSliceByName('flight')
+    var flightInfo = this.resourseManager.getSliceByName('flight')
     var flight = new Flight(this, flightInfo)
     flight.setPosition(50, 300)
     this.addToDrawList(flight)
@@ -66,8 +66,8 @@ class Scene extends BaseScene {
     for (var i in this.enemys) {
       var enemy = this.enemys[i]
       if (collide(this.flight, enemy)) {
-        log(enemy)
-        log(this.flight)
+        //log(enemy)
+        //log(this.flight)
         // Gameover
         this.gameover()
         return
@@ -78,8 +78,8 @@ class Scene extends BaseScene {
       var enemy = this.enemys[i]
       for (var j in this.bullets) {
         var bullet = this.bullets[j]
-        if (collide(enemy, bullet)) {
-          enemy.die()
+        if (!enemy.isDead() && collide(enemy, bullet)) {
+          enemy.boom()
           bullet.die()
         }
       }
@@ -88,10 +88,6 @@ class Scene extends BaseScene {
 
   getImageByName(name) {
     return this.resourseManager.getImageByName(name)
-  }
-
-  getSliceByName(name, idx) {
-    return this.resourseManager.getSliceByName(name, idx)
   }
 
   removeEnemy(enemy) {
@@ -103,10 +99,11 @@ class Scene extends BaseScene {
   createEnemy() {
     var ememyTypes = config.slice_info.elements.enemy.length
     var idx = randomIn(ememyTypes)
-    var flightInfo = this.getSliceByName('enemy', idx)
-    //log(ememyTypes, flightInfo)
+    var flightInfo = this.resourseManager.getSliceByName('enemy.' + idx + ".default")
+    var die_animations = this.resourseManager.getConfigByName('enemy.' + idx + ".die")
     var enemy = new Enemy(this, flightInfo)
-    var x = randomIn(this.width)
+    enemy.setAnimations({die: die_animations})
+    var x = randomIn(this.width - enemy.width)
     enemy.setPosition(x, 0 - enemy.height)
     this.addToDrawList(enemy)
     this.enemys.push(enemy)

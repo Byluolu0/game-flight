@@ -46,7 +46,7 @@ class Flight extends SliceImage {
     if (this.energy < this.fireEnergyNeed) {
       return
     }
-    var flightInfo = this.scene.getSliceByName('bullet')
+    var flightInfo = this.scene.resourseManager.getSliceByName('bullet')
     var bullet_x = this.x + this.width / 2
     var bullet_y = this.y
     var bullet = new Bullet(this.scene, flightInfo, this)

@@ -14,18 +14,25 @@ class ResourseManager {
     return img
   }
 
-  getSliceByName(name, idx) {
-    if (idx == null) {
-      var sliceInfo = {}
-      sliceInfo.slice = config.slice_info.elements[name]
-      sliceInfo.rawImage = this.slice
-      return sliceInfo
-    } else {
-      var sliceInfo = {}
-      sliceInfo.slice = config.slice_info.elements[name][idx]
-      log(idx, sliceInfo.slice = config.slice_info.elements[name][idx])
-      sliceInfo.rawImage = this.slice
-      return sliceInfo
+  getConfigByName(name) {
+    var idxs = name.split(".")
+    var result = config.slice_info.elements
+    for (var k in idxs) {
+      var key = idxs[k]
+      var x = parseInt(key)
+      if (!isNaN(x)) {
+        key = x
+      }
+      result = result[key]
     }
+    return result
+  }
+
+  getSliceByName(name) {
+    var result = this.getConfigByName(name)
+    var ret = {}
+    ret.slice = result
+    ret.rawImage = this.slice
+    return ret
   }
 }

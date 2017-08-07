@@ -12,7 +12,8 @@ class SceneStart extends BaseScene {
   }
 
   __init() {
-    var sliceInfo = this.getSliceByName('bg')
+    var sliceInfo = this.resourseManager.getSliceByName('bg')
+    //log(sliceInfo)
     var bg = new StartBg(this, sliceInfo)
     bg.setPosition(0, 0)
     this.addToDrawList(bg)
@@ -33,9 +34,5 @@ class SceneStart extends BaseScene {
 
   update() {
 
-  }
-
-  getSliceByName(name) {
-    return this.resourseManager.getSliceByName(name)
   }
 }
