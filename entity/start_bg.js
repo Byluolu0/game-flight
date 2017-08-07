@@ -1,5 +1,5 @@
 class StartBg extends SliceImage {
-  constructor(scene, sliceInfo) {
-    super(scene, sliceInfo)
+  constructor(scene, cfg, rawImage) {
+    super(scene, cfg, rawImage)
   }
 }

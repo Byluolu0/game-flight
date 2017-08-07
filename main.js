@@ -1,6 +1,6 @@
 
 var log = console.log.bind(console)
-if (!config.debug_mode) {
+if (!globalConfig.debug_mode) {
   log = function() {}
 }
 
@@ -23,16 +23,17 @@ var runLoop = function() {
   setTimeout(function() {
     runLoop()
     //log('one loop')
-  }, 1000 / config.fps)
+  }, 1000 / globalConfig.fps)
 }
 
 // 资源加载
 var __loadResourse = function(start) {
-  var path = config.image_path
-  var arr = Object.keys(path)
-  var total = arr.length + 1
+  var path = globalConfig.image_path
   var loaded = 0
-
+  var total = 0
+  for (var i in path) {
+    total++
+  }
   for (var i in path) {
     resourseImages[i] = new Image()
     resourseImages[i].src = path[i]
@@ -46,7 +47,7 @@ var __loadResourse = function(start) {
     }
   }
 
-  var slicePath = config.slice_info.path
+  var slicePath = globalConfig.image_path
 
   resourseSlice = new Image()
   resourseSlice.src = slicePath

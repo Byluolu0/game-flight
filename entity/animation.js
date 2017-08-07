@@ -18,7 +18,7 @@ class Animation {
     }
     this.cooldown++
     //log(this.cooldown)
-    if (this.cooldown == config.animation_cooldown) {
+    if (this.cooldown == globalConfig.animation_cooldown) {
       this.cooldown = 0
       this.idx++
       var to = this.slices[this.idx - 1]

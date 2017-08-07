@@ -16,16 +16,16 @@ class Scene extends BaseScene {
   }
 
   __init() {
-    var bgInfo = this.resourseManager.getSliceByName('bg')
-    var bg = new StartBg(this, bgInfo)
+    var configBg = globalConfig.bg
+    var bgRawImage = this.resourseManager.getImageByName(configBg.base_image)
+    var bg = new StartBg(this, configBg, bgRawImage)
     bg.setPosition(0, 0)
-    this.addToDrawList(bg)
     this.bg = bg
 
-    var flightInfo = this.resourseManager.getSliceByName('flight')
-    var flight = new Flight(this, flightInfo)
+    var configFlight = globalConfig.flight
+    var flightRawImage = this.resourseManager.getImageByName(configFlight.base_image)
+    var flight = new Flight(this, configFlight, flightRawImage)
     flight.setPosition(50, 300)
-    this.addToDrawList(flight)
     this.flight = flight
 
     var _this = this
@@ -97,15 +97,12 @@ class Scene extends BaseScene {
   }
 
   createEnemy() {
-    var ememyTypes = config.slice_info.elements.enemy.length
-    var idx = randomIn(ememyTypes)
-    var flightInfo = this.resourseManager.getSliceByName('enemy.' + idx + ".default")
-    var die_animations = this.resourseManager.getConfigByName('enemy.' + idx + ".die")
-    var enemy = new Enemy(this, flightInfo)
-    enemy.setAnimations({die: die_animations})
+    var idx = randomIn(configGetEnemyTypeCount())
+    var configEnemy = configGetEnemyByIdx(idx)
+    var rawImage = this.resourseManager.getImageByName(configEnemy.base_image)
+    var enemy = new Enemy(this, configEnemy, rawImage)
     var x = randomIn(this.width - enemy.width)
     enemy.setPosition(x, 0 - enemy.height)
-    this.addToDrawList(enemy)
     this.enemys.push(enemy)
   }
 
@@ -118,7 +115,6 @@ class Scene extends BaseScene {
   }
 
   addBullet(bullet) {
-    this.addToDrawList(bullet)
     this.bullets.push(bullet)
   }
 

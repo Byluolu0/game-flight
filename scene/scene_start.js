@@ -12,11 +12,10 @@ class SceneStart extends BaseScene {
   }
 
   __init() {
-    var sliceInfo = this.resourseManager.getSliceByName('bg')
-    //log(sliceInfo)
-    var bg = new StartBg(this, sliceInfo)
+    var configBg = globalConfig.bg
+    var bgRawImage = this.resourseManager.getImageByName(configBg.base_image)
+    var bg = new StartBg(this, configBg, bgRawImage)
     bg.setPosition(0, 0)
-    this.addToDrawList(bg)
     this.bg = bg
 
     this.eventManager.registerClickHandler('k', function() {

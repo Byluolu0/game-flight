@@ -1,13 +1,24 @@
-class SliceImage extends GameImage {
-  constructor(scene, sliceInfo) {
-    super(scene, sliceInfo.rawImage)
-    var slice = sliceInfo.slice
+class SliceImage {
+  constructor(scene, cfg, rawImage) {
+    this.scene = scene
+    this.canvas = scene.canvas
+    this.ctx = scene.ctx
+    this.rawImage = rawImage
+    this.sx = cfg.sx
+    this.sy = cfg.sy
+    this.width = cfg.sw
+    this.height = cfg.sh
+    this.x = 0
+    this.y = 0
     this.dead = false
-    this.sx = slice.sx
-    this.sy = slice.sy
-    this.width = slice.sw
-    this.height = slice.sh
     this.animations = {}
+
+    this.scene.addToDrawList(this)
+  }
+
+  setPosition(x, y) {
+    this.x = x
+    this.y = y
   }
 
   draw() {

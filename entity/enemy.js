@@ -1,8 +1,10 @@
 class Enemy extends SliceImage {
-  constructor(scene, sliceInfo) {
-    super(scene, sliceInfo)
+  constructor(scene, cfg, rawImage) {
+    super(scene, cfg, rawImage)
     this.scene = scene
-    this.speed = config.enemy_speed
+    this.speed = cfg.speed
+    this.drop_speed = cfg.drop_speed
+    this.setAnimations(cfg.animations)
   }
 
   setSpeed(speed) {
@@ -19,7 +21,7 @@ class Enemy extends SliceImage {
 
   boom() {
     this.setDead()
-    this.speed = config.enemy_drop_speed
+    this.speed = this.drop_speed
     this.runAnimation("die")
   }
 

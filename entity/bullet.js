@@ -1,8 +1,9 @@
 class Bullet extends SliceImage {
-  constructor(scene, sliceInfo, flight) {
-    super(scene, sliceInfo)
+  constructor(scene, flight, cfg, rawImage) {
+    super(scene, cfg, rawImage)
     this.flight = flight
-    this.speed = config.bullet_speed
+    this.speed = cfg.speed
+    this.scene.addBullet(this)
   }
 
   setSpeed(speed) {

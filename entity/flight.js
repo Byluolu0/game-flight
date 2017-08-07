@@ -1,8 +1,8 @@
 class Flight extends SliceImage {
-  constructor(scene, sliceInfo) {
-    super(scene, sliceInfo)
-    this.speed = config.flight_speed
-    this.fireEnergyNeed = config.fire_enegy_need
+  constructor(scene, cfg, rawImage) {
+    super(scene, cfg, rawImage)
+    this.speed = cfg.speed
+    this.fireEnergyNeed = cfg.fire_enegy_need
     this.energy = 0
   }
 
@@ -46,12 +46,12 @@ class Flight extends SliceImage {
     if (this.energy < this.fireEnergyNeed) {
       return
     }
-    var flightInfo = this.scene.resourseManager.getSliceByName('bullet')
+    var configBullet = globalConfig.bullet
+    var bulletRawImage = this.scene.resourseManager.getImageByName(configBullet.base_image)
+    var bullet = new Bullet(this.scene, this, configBullet, bulletRawImage)
     var bullet_x = this.x + this.width / 2
     var bullet_y = this.y
-    var bullet = new Bullet(this.scene, flightInfo, this)
     bullet.setPosition(bullet_x, bullet_y)
-    this.scene.addBullet(bullet)
     this.energy = 0
   }
 
