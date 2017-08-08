@@ -8,4 +8,8 @@
 * s: 下  
 * a: 左  
 * d: 右  
-* j: 开火  
+* j: 开火
+
+### 游戏截图
+
+![](assets/game-flight-v1.png)
