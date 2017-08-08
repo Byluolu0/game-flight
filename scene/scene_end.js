@@ -12,7 +12,7 @@ class SceneEnd extends BaseScene {
   }
 
   __init() {
-    this.eventManager.registerClickHandler('r', function() {
+    this.eventManager.registerClickHandler('k', function() {
       var resourseManager = new ResourseManager(resourseImages, resourseSlice)
       var eventManager = new EventManager()
       var s = new SceneStart(canvas, ctx, resourseManager, eventManager)
@@ -22,7 +22,8 @@ class SceneEnd extends BaseScene {
 
   draw() {
     super.draw()
-    this.ctx.fillText('Press r to restart.', 10, 50)
+    this.ctx.textAlign = "center"
+    this.ctx.fillText("Press k to restart", this.width / 2, this.height / 2)
   }
 
   update() {

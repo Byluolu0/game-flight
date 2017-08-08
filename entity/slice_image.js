@@ -52,7 +52,7 @@ class SliceImage {
       //log(k, v)
       this.animations[k] = new Animation(this, v, finishCallback)
     }
-    //log(this.animations)
+    log("setAnimations", this.animations)
   }
 
   runAnimation(name) {

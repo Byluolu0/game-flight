@@ -28,7 +28,8 @@ class SceneStart extends BaseScene {
 
   draw() {
     super.draw()
-    this.ctx.fillText('Press k to start.', 10, 50)
+    this.ctx.textAlign = "center"
+    this.ctx.fillText("Press k to start", this.width / 2, this.height / 2)
   }
 
   update() {

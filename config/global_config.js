@@ -3,6 +3,7 @@ const globalConfig = {
   fps: 30,
   debug_mode: true,
   animation_cooldown: 2,
+  enemy_internal: 10,
   image_path: {
     gameArts: 'images/gameArts.png',
   },
@@ -15,12 +16,34 @@ const globalConfig = {
   },
   flight: {
     speed: 10,
-    fire_enegy_need: 10,
+    fire_enegy_need: 3,
     base_image: 'gameArts',
     sx: 432,
-    sy: 330,
+    sy: 332,
     sw: 70,
-    sh: 80,
+    sh: 83,
+    animations: {
+      die: [
+        {
+          sx: 432,
+          sy: 249,
+          sw: 70,
+          sh: 83,
+        },
+        {
+          sx: 432,
+          sy: 83,
+          sw: 70,
+          sh: 83,
+        },
+        {
+          sx: 432,
+          sy: 166,
+          sw: 70,
+          sh: 83,
+        },
+      ],
+    },
   },
   bullet: {
     speed: 10,
@@ -32,9 +55,9 @@ const globalConfig = {
   },
   enemy: [
     {
-      speed: 10,
+      speed: 6,
       drop_speed: 3,
-      hp: 3,
+      hp: 6,
       base_image: 'gameArts',
       sx: 222,
       sy: 854,
@@ -71,7 +94,7 @@ const globalConfig = {
     },
     {
       speed: 10,
-      drop_speed: 3,
+      drop_speed: 4,
       hp: 1,
       base_image: 'gameArts',
       sx: 83,
@@ -90,9 +113,9 @@ const globalConfig = {
       },
     },
     {
-      speed: 10,
-      drop_speed: 3,
-      hp: 2,
+      speed: 9,
+      drop_speed: 4,
+      hp: 3,
       base_image: 'gameArts',
       sx: 0,
       sy: 567,

@@ -1,4 +1,7 @@
 function collide(a, b) {
+  if (a.isDead() && b.isDead()) {
+    return false
+  }
   if (AcollideB(a, b) || AcollideB(b, a)) {
     return true
   }

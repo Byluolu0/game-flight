@@ -11,6 +11,8 @@ class Scene extends BaseScene {
     this.height = canvas.height
     this.enemys = []
     this.bullets = []
+    this.pause = false
+    this.enemy_cooldown = 0
 
     this.__init()
   }
@@ -25,7 +27,7 @@ class Scene extends BaseScene {
     var configFlight = globalConfig.flight
     var flightRawImage = this.resourseManager.getImageByName(configFlight.base_image)
     var flight = new Flight(this, configFlight, flightRawImage)
-    flight.setPosition(50, 300)
+    flight.setPosition(this.width / 2 - flight.width / 2, this.height - flight.height)
     this.flight = flight
 
     var _this = this
@@ -41,15 +43,24 @@ class Scene extends BaseScene {
     this.eventManager.registerKeydownUpdateHandler('d', function() {
       _this.flight.moveRight()
     })
-    this.eventManager.registerKeydownUpdateHandler('f', function() {
+    this.eventManager.registerKeydownUpdateHandler('j', function() {
       _this.flight.fire()
     })
-
-    this.createEnemyInTime()
+    this.eventManager.registerClickHandler('p', function() {
+      _this.pause = !_this.pause
+    })
   }
 
   update() {
     this.eventManager.update()
+    if (this.pause) {
+      return
+    }
+    this.enemy_cooldown++
+    if (this.enemy_cooldown == globalConfig.enemy_internal) {
+      this.enemy_cooldown = 0
+      this.createEnemy()
+    }
     this.flight.update()
     for (var i in this.enemys) {
       this.enemys[i].update()
@@ -62,14 +73,19 @@ class Scene extends BaseScene {
     this.collideCheck()
   }
 
+  draw() {
+    if (this.pause) {
+      return
+    }
+    super.draw()
+  }
+
   collideCheck() {
     for (var i in this.enemys) {
       var enemy = this.enemys[i]
       if (collide(this.flight, enemy)) {
-        //log(enemy)
-        //log(this.flight)
-        // Gameover
-        this.gameover()
+        enemy.boom()
+        this.flight.boom()
         return
       }
     }
@@ -78,7 +94,7 @@ class Scene extends BaseScene {
       var enemy = this.enemys[i]
       for (var j in this.bullets) {
         var bullet = this.bullets[j]
-        if (!enemy.isDead() && collide(enemy, bullet)) {
+        if (collide(enemy, bullet)) {
           enemy.boom()
           bullet.die()
         }
@@ -104,14 +120,6 @@ class Scene extends BaseScene {
     var x = randomIn(this.width - enemy.width)
     enemy.setPosition(x, 0 - enemy.height)
     this.enemys.push(enemy)
-  }
-
-  createEnemyInTime() {
-    var _this = this
-    this.createEnemy()
-    setTimeout(function() {
-      _this.createEnemyInTime()
-    }, 2000)
   }
 
   addBullet(bullet) {

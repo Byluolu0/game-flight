@@ -4,6 +4,7 @@ class Flight extends SliceImage {
     this.speed = cfg.speed
     this.fireEnergyNeed = cfg.fire_enegy_need
     this.energy = 0
+    this.setAnimations(cfg.animations)
   }
 
   setSpeed(speed) {
@@ -12,6 +13,17 @@ class Flight extends SliceImage {
 
   setFireEnergyNeed(fireEnergyNeed) {
     this.fireEnergyNeed = fireEnergyNeed
+  }
+
+  die() {
+    this.scene.gameover()
+  }
+
+  boom() {
+    //log("flight boom", this)
+    this.setDead()
+    this.speed = 0
+    this.runAnimation("die")
   }
 
   moveUp() {
@@ -56,6 +68,7 @@ class Flight extends SliceImage {
   }
 
   update() {
+    super.update()
     if (this.energy < this.fireEnergyNeed) {
       this.energy += 1
     }
