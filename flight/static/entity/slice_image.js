@@ -52,7 +52,7 @@ class SliceImage {
       //log(k, v)
       this.animations[k] = new Animation(this, v, finishCallback)
     }
-    log("setAnimations", this.animations)
+    //log("setAnimations", this.animations)
   }
 
   runAnimation(name) {
@@ -60,7 +60,7 @@ class SliceImage {
     if (ani) {
       ani.enable()
     }
-    log(name, ani)
+    //log(name, ani)
   }
 
   setDead() {

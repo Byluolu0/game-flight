@@ -37,3 +37,12 @@ function randomIn(x) {
   }
   return result
 }
+
+function fillMultiLine(ctx, str, x, y, rowInterval) {
+  var s = str.split("\n")
+  for (var i in s) {
+    line = s[i]
+    ctx.fillText(line, x, y)
+    y += rowInterval
+  }
+}

@@ -5,7 +5,7 @@ const globalConfig = {
   animation_cooldown: 2,
   enemy_internal: 10,
   image_path: {
-    gameArts: 'images/gameArts.png',
+    gameArts: '../static/images/gameArts.png',
   },
   bg: {
     base_image: 'gameArts',
@@ -16,7 +16,7 @@ const globalConfig = {
   },
   flight: {
     speed: 10,
-    fire_enegy_need: 3,
+    fire_enegy_need: 2,
     base_image: 'gameArts',
     sx: 432,
     sy: 332,
@@ -56,7 +56,7 @@ const globalConfig = {
   enemy: [
     {
       speed: 6,
-      drop_speed: 3,
+      drop_speed: 2,
       hp: 6,
       base_image: 'gameArts',
       sx: 222,
@@ -94,7 +94,7 @@ const globalConfig = {
     },
     {
       speed: 10,
-      drop_speed: 4,
+      drop_speed: 3,
       hp: 1,
       base_image: 'gameArts',
       sx: 83,
@@ -114,8 +114,8 @@ const globalConfig = {
     },
     {
       speed: 9,
-      drop_speed: 4,
-      hp: 3,
+      drop_speed: 3,
+      hp: 2,
       base_image: 'gameArts',
       sx: 0,
       sy: 567,

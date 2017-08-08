@@ -9,7 +9,7 @@
 * a: 左  
 * d: 右  
 * j: 开火
-* [试玩](http://www.gameflight.luoxj.me)
+* [game-flight 试玩](http://www.gameflight.luoxj.me)
 
 ### 游戏截图
 

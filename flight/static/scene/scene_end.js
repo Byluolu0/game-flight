@@ -23,7 +23,7 @@ class SceneEnd extends BaseScene {
   draw() {
     super.draw()
     this.ctx.textAlign = "center"
-    this.ctx.fillText("Press k to restart", this.width / 2, this.height / 2)
+    this.ctx.fillText(globalString.restart_tip, this.width / 2, this.height / 2)
   }
 
   update() {

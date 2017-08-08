@@ -13,13 +13,13 @@ class Animation {
   }
 
   update() {
-    log(this.holder)
+    //log(this.holder)
     if (!this.enabled) {
       return
     }
-    log("in", this.holder)
+    //log("in", this.holder)
     this.cooldown++
-    log(this.cooldown)
+    //log(this.cooldown)
     if (this.cooldown == globalConfig.animation_cooldown) {
       this.cooldown = 0
       this.idx++

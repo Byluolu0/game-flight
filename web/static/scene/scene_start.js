@@ -29,7 +29,7 @@ class SceneStart extends BaseScene {
   draw() {
     super.draw()
     this.ctx.textAlign = "center"
-    this.ctx.fillText("Press k to start", this.width / 2, this.height / 2)
+    fillMultiLine(this.ctx, globalString.start_tip, this.width / 2, this.height / 4, 20)
   }
 
   update() {
