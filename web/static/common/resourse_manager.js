@@ -1,7 +1,6 @@
 class ResourseManager {
-  constructor(images, slice) {
+  constructor(images) {
     this.images = images
-    this.slice = slice
   }
 
   getImageByName(name) {

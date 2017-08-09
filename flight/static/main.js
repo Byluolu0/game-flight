@@ -4,21 +4,14 @@ if (!globalConfig.debug_mode) {
   log = function() {}
 }
 
-var canvas = document.getElementById('id-canvas')
-var ctx = canvas.getContext('2d')
-
-var curScene = null
 const resourseImages = {}
-var resourseSlice = null
-
-var setScene = function(s) {
-  curScene = s
-}
+const games = []
 
 // 主循环
 var runLoop = function() {
-  curScene.update()
-  curScene.draw()
+  for (var i in games) {
+    games[i].runLoop()
+  }
 
   setTimeout(function() {
     runLoop()
@@ -40,32 +33,20 @@ var __loadResourse = function(start) {
     resourseImages[i].onload = function() {
       loaded += 1
       if (total == loaded) {
-        //loaded
-        //log("loaded")
         start()
       }
-    }
-  }
-
-  var slicePath = globalConfig.image_path
-
-  resourseSlice = new Image()
-  resourseSlice.src = slicePath
-  resourseSlice.onload = function() {
-    loaded += 1
-    if (total == loaded) {
-      //loaded
-      //log("loaded")
-      start()
     }
   }
 }
 
 var __mainLoop = function() {
-  var resourseManager = new ResourseManager(resourseImages, resourseSlice)
-  var eventManager = new EventManager()
-  var s = new SceneStart(canvas, ctx, resourseManager, eventManager)
-  setScene(s)
+  for (var i = 0; i < 2; i++) {
+    let canvas = document.getElementById('id-canvas-' + i)
+    let resourseManager = new ResourseManager(resourseImages)
+    let eventManager = new EventManager()
+    let game = new Game(canvas, resourseManager, eventManager, globalConfig.operation[i])
+    games.push(game)
+  }
   runLoop()
 }
 

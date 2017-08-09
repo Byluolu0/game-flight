@@ -1,4 +1,4 @@
 const globalString = {
-  start_tip: "操作说明\nk --- 开始游戏\np --- 暂停游戏\nw --- 上\ns --- 下\na --- 左\nd --- 右\nj --- 开火",
-  restart_tip: "k --- 重新开始游戏",
+  start_tip: "操作说明\n{0} --- 开始游戏\n{1} --- 暂停游戏\n{2} --- 上\n{3} --- 下\n{4} --- 左\n{5} --- 右\n{6} --- 开火",
+  restart_tip: "{0} --- 重新开始游戏",
 }

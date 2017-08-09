@@ -1,12 +1,8 @@
 class SceneStart extends BaseScene {
-  constructor(canvas, ctx, resourseManager, eventManager) {
-    super(canvas, ctx)
-    this.canvas = canvas
-    this.ctx = ctx
+  constructor(game, resourseManager, eventManager) {
+    super(game)
     this.eventManager = eventManager
     this.resourseManager = resourseManager
-    this.width = canvas.width
-    this.height = canvas.height
 
     this.__init()
   }
@@ -18,21 +14,24 @@ class SceneStart extends BaseScene {
     bg.setPosition(0, 0)
     this.bg = bg
 
-    this.eventManager.registerClickHandler('k', function() {
-      var resourseManager = new ResourseManager(resourseImages, resourseSlice)
-      var eventManager = new EventManager()
-      var s = new Scene(canvas, ctx, resourseManager, eventManager)
-      setScene(s)
+    let _this = this
+
+    let o = this.game.operation
+    this.eventManager.registerClickHandler(o.start.key, function() {
+      let resourseManager = new ResourseManager(resourseImages)
+      let eventManager = new EventManager()
+      let s = new Scene(_this.game, resourseManager, eventManager)
+      _this.game.setScene(s)
     })
   }
 
   draw() {
     super.draw()
     this.ctx.textAlign = "center"
-    fillMultiLine(this.ctx, globalString.start_tip, this.width / 2, this.height / 4, 20)
-  }
+    let o = this.game.operation
+    let format_start_tip = stringFormat(globalString.start_tip, o.start.desc,
+      o.pause.desc, o.up.desc, o.down.desc, o.left.desc, o.right.desc, o.fire.desc)
 
-  update() {
-
+    fillMultiLine(this.ctx, format_start_tip, this.width / 2, this.height / 4, 20)
   }
 }

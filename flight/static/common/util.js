@@ -46,3 +46,14 @@ function fillMultiLine(ctx, str, x, y, rowInterval) {
     y += rowInterval
   }
 }
+
+function stringFormat() {
+  if (arguments.length == 0) return ""
+  let result = arguments[0]
+  for (let i = 1; i < arguments.length; i++) {
+    let value = arguments[i]
+    let idx_format = "{" + (i - 1) + "}"
+    result = result.replace(idx_format, value)
+  }
+  return result
+}

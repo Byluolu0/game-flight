@@ -4,20 +4,25 @@
 		<meta charset="utf-8">
 		<title>Game Flight</title>
 		<style media="screen">
+			#container {
+				position: absolute;
+			  margin: auto;
+			  top: 0;
+			  left: 0;
+			  right: 0;
+			  bottom: 0;
+			}
 			canvas {
 				border: 1px black solid;
-				position: absolute;
-        margin: auto;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
 			}
 		</style>
-
 	</head>
+
 	<body>
-		<canvas id="id-canvas" width="320" height="568"></canvas>
+		<div id="container">
+			<canvas id="id-canvas-0" width="320" height="568"></canvas>
+			<canvas id="id-canvas-1" width="320" height="568"></canvas>
+		</div>
 
 		<script src="../static/common/resourse_manager.js"></script>
 		<script src="../static/common/event_manager.js"></script>
@@ -35,6 +40,7 @@
 		<script src="../static/config/global_config.js"></script>
 		<script src="../static/config/global_string.js"></script>
 		<script src="../static/config/config_manager.js"></script>
+		<script src="../static/game.js"></script>
 		<script src="../static/main.js"></script>
 	</body>
 </html>

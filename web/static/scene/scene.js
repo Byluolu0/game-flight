@@ -1,14 +1,10 @@
 class Scene extends BaseScene {
-  constructor(canvas, ctx, resourseManager, eventManager) {
-    super(canvas, ctx)
-    this.canvas = canvas
-    this.ctx = ctx
+  constructor(game, resourseManager, eventManager) {
+    super(game)
     this.resourseManager = resourseManager
     this.eventManager = eventManager
     this.flight = null
     this.bg = null
-    this.width = canvas.width
-    this.height = canvas.height
     this.enemys = []
     this.bullets = []
     this.pause = false
@@ -30,23 +26,24 @@ class Scene extends BaseScene {
     flight.setPosition(this.width / 2 - flight.width / 2, this.height - flight.height)
     this.flight = flight
 
-    var _this = this
-    this.eventManager.registerKeydownUpdateHandler('w', function() {
+    let _this = this
+    let o = this.game.operation
+    this.eventManager.registerKeydownUpdateHandler(o.up.key, function() {
         _this.flight.moveUp()
     })
-    this.eventManager.registerKeydownUpdateHandler('s', function() {
+    this.eventManager.registerKeydownUpdateHandler(o.down.key, function() {
       _this.flight.moveDown()
     })
-    this.eventManager.registerKeydownUpdateHandler('a', function() {
+    this.eventManager.registerKeydownUpdateHandler(o.left.key, function() {
       _this.flight.moveLeft()
     })
-    this.eventManager.registerKeydownUpdateHandler('d', function() {
+    this.eventManager.registerKeydownUpdateHandler(o.right.key, function() {
       _this.flight.moveRight()
     })
-    this.eventManager.registerKeydownUpdateHandler('j', function() {
+    this.eventManager.registerKeydownUpdateHandler(o.fire.key, function() {
       _this.flight.fire()
     })
-    this.eventManager.registerClickHandler('p', function() {
+    this.eventManager.registerClickHandler(o.pause.key, function() {
       _this.pause = !_this.pause
     })
   }
@@ -133,9 +130,9 @@ class Scene extends BaseScene {
   }
 
   gameover() {
-    var resourseManager = new ResourseManager(resourseImages, resourseSlice)
-    var eventManager = new EventManager()
-    var s = new SceneEnd(this.canvas, this.ctx, resourseManager, eventManager)
-    setScene(s)
+    let resourseManager = new ResourseManager(resourseImages)
+    let eventManager = new EventManager()
+    let s = new SceneEnd(this.game, resourseManager, eventManager)
+    this.game.setScene(s)
   }
 }

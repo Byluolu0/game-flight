@@ -1,7 +1,10 @@
 class BaseScene {
-  constructor(canvas, ctx) {
-    this.canvas = canvas
-    this.ctx = ctx
+  constructor(game) {
+    this.game = game
+    this.canvas = game.canvas
+    this.ctx = game.ctx
+    this.width = game.canvas.width
+    this.height = game.canvas.height
     this.drawList = []
   }
 
@@ -20,5 +23,9 @@ class BaseScene {
       var drawItem = this.drawList[i]
       drawItem.draw()
     }
+  }
+
+  update() {
+
   }
 }

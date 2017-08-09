@@ -145,4 +145,66 @@ const globalConfig = {
       },
     },
   ],
+  operation: [
+    {
+      start: {
+        key: "1",
+        desc: "num1",
+      },
+      pause: {
+        key: "o",
+        desc: "o",
+      },
+      up: {
+        key: "w",
+        desc: "w",
+      },
+      down: {
+        key: "s",
+        desc: "s",
+      },
+      left: {
+        key: "a",
+        desc: "a",
+      },
+      right: {
+        key: "d",
+        desc: "d",
+      },
+      fire: {
+        key: "j",
+        desc: "j",
+      },
+    },
+    {
+      start: {
+        key: "2",
+        desc: "num2",
+      },
+      pause: {
+        key: "p",
+        desc: "p",
+      },
+      up: {
+        key: "ArrowUp",
+        desc: "¡ü",
+      },
+      down: {
+        key: "ArrowDown",
+        desc: "¡ý",
+      },
+      left: {
+        key: "ArrowLeft",
+        desc: "¡û",
+      },
+      right: {
+        key: "ArrowRight",
+        desc: "¡ú",
+      },
+      fire: {
+        key: " ",
+        desc: "¿Õ¸ñ",
+      },
+    },
+  ],
 }
