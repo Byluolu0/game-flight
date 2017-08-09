@@ -5,7 +5,7 @@ const globalConfig = {
   animation_cooldown: 2,
   enemy_internal: 10,
   image_path: {
-    gameArts: 'static/images/gameArts.png',
+    gameArts: 'images/gameArts.png',
   },
   bg: {
     base_image: 'gameArts',
@@ -187,23 +187,23 @@ const globalConfig = {
       },
       up: {
         key: "ArrowUp",
-        desc: "¡ü",
+        desc: "â†‘",
       },
       down: {
         key: "ArrowDown",
-        desc: "¡ı",
+        desc: "â†“",
       },
       left: {
         key: "ArrowLeft",
-        desc: "¡û",
+        desc: "â†",
       },
       right: {
         key: "ArrowRight",
-        desc: "¡ú",
+        desc: "â†’",
       },
       fire: {
         key: " ",
-        desc: "¿Õ¸ñ",
+        desc: "ç©ºæ ¼",
       },
     },
   ],
