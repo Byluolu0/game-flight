@@ -187,23 +187,23 @@ const globalConfig = {
       },
       up: {
         key: "ArrowUp",
-        desc: "��",
+        desc: "↑",
       },
       down: {
         key: "ArrowDown",
-        desc: "��",
+        desc: "↓",
       },
       left: {
         key: "ArrowLeft",
-        desc: "��",
+        desc: "←",
       },
       right: {
         key: "ArrowRight",
-        desc: "��",
+        desc: "→",
       },
       fire: {
         key: " ",
-        desc: "�ո�",
+        desc: "空格",
       },
     },
   ],
